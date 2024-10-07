@@ -1,4 +1,9 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {};
+const nextConfig = {
+  // eactStrictMode: true,
+  // experimental: {
+  //   appDir: true,
+  // },
+};
 
 export default nextConfig;
