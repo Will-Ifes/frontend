@@ -88,13 +88,16 @@ export async function getUserByEmail(email: string): Promise<User> {
 }
 
 export async function loginUser(data: { email: string; password: string }) {
-  const response = await fetch(`${process.env.BACKEND_URL}/auth/login`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_BACKEND_URL}/auth/login`,
+    {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
     },
-    body: JSON.stringify(data),
-  });
+  );
 
   if (!response.ok) {
     const result = await response.json();
@@ -109,13 +112,15 @@ export async function authenticate(
   state: string | undefined,
   formdata: FormData,
 ) {
-  console.log(process.env.BACKEND_URL);
   try {
-    const res = await fetch(`${process.env.BACKEND_URL}/auth/login`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(Object.fromEntries(formdata)),
-    });
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_BACKEND_URL}/auth/login`,
+      {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(Object.fromEntries(formdata)),
+      },
+    );
 
     if (!res.ok) {
       const errorText = await res.text();

@@ -9,7 +9,7 @@ const loginSchema = z.object({
   password: z.string().min(8, 'A senha deve ter no mínimo 8 caracteres'),
 });
 
-const JWT_SECRET = process.env.JWT_SECRET || 'default_secret';
+const JWT_SECRET = process.env.NEXT_PUBLIC_JWT_SECRET || 'default_secret';
 
 export async function POST(request: Request) {
   try {
