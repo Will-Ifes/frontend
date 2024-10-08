@@ -1,6 +1,6 @@
-import { useState } from "react";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Input } from "@/components/ui/input";
+import { useState } from 'react';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Input } from '@/components/ui/input';
 import {
   Table,
   TableBody,
@@ -8,23 +8,23 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@/components/ui/table";
+} from '@/components/ui/table';
 
 // Mock data - replace with actual API calls
 const mockEntries = [
   {
     id: 1,
-    material: "Item 1",
-    supplier: "Supplier A",
-    date: "2023-05-01",
+    material: 'Item 1',
+    supplier: 'Supplier A',
+    date: '2023-05-01',
     quantity: 100,
     value: 1000,
   },
   {
     id: 2,
-    material: "Item 2",
-    supplier: "Supplier B",
-    date: "2023-05-02",
+    material: 'Item 2',
+    supplier: 'Supplier B',
+    date: '2023-05-02',
     quantity: 50,
     value: 750,
   },
@@ -33,35 +33,35 @@ const mockEntries = [
 const mockExits = [
   {
     id: 1,
-    material: "Item 1",
-    client: "Client X",
-    employee: "John Doe",
-    date: "2023-05-03",
+    material: 'Item 1',
+    client: 'Client X',
+    employee: 'John Doe',
+    date: '2023-05-03',
     quantity: 20,
   },
   {
     id: 2,
-    material: "Item 2",
-    client: "Client Y",
-    employee: "Jane Smith",
-    date: "2023-05-04",
+    material: 'Item 2',
+    client: 'Client Y',
+    employee: 'Jane Smith',
+    date: '2023-05-04',
     quantity: 10,
   },
 ];
 
 export default function InventoryMovements() {
   const [entriesFilters, setEntriesFilters] = useState({
-    material: "",
-    supplier: "",
-    startDate: "",
-    endDate: "",
+    material: '',
+    supplier: '',
+    startDate: '',
+    endDate: '',
   });
   const [exitsFilters, setExitsFilters] = useState({
-    material: "",
-    client: "",
-    employee: "",
-    startDate: "",
-    endDate: "",
+    material: '',
+    client: '',
+    employee: '',
+    startDate: '',
+    endDate: '',
   });
 
   const handleEntriesFilterChange = (key: string, value: string) => {
@@ -81,7 +81,7 @@ export default function InventoryMovements() {
         .toLowerCase()
         .includes(entriesFilters.supplier.toLowerCase()) &&
       (!entriesFilters.startDate || entry.date >= entriesFilters.startDate) &&
-      (!entriesFilters.endDate || entry.date <= entriesFilters.endDate)
+      (!entriesFilters.endDate || entry.date <= entriesFilters.endDate),
   );
 
   const filteredExits = mockExits.filter(
@@ -94,7 +94,7 @@ export default function InventoryMovements() {
         .toLowerCase()
         .includes(exitsFilters.employee.toLowerCase()) &&
       (!exitsFilters.startDate || exit.date >= exitsFilters.startDate) &&
-      (!exitsFilters.endDate || exit.date <= exitsFilters.endDate)
+      (!exitsFilters.endDate || exit.date <= exitsFilters.endDate),
   );
 
   return (
@@ -106,19 +106,19 @@ export default function InventoryMovements() {
 
       <TabsContent value="entries">
         <div className="space-y-4">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-4">
             <Input
               placeholder="Material"
               value={entriesFilters.material}
               onChange={(e) =>
-                handleEntriesFilterChange("material", e.target.value)
+                handleEntriesFilterChange('material', e.target.value)
               }
             />
             <Input
               placeholder="Fornecedor"
               value={entriesFilters.supplier}
               onChange={(e) =>
-                handleEntriesFilterChange("supplier", e.target.value)
+                handleEntriesFilterChange('supplier', e.target.value)
               }
             />
             <Input
@@ -126,7 +126,7 @@ export default function InventoryMovements() {
               placeholder="Data Início"
               value={entriesFilters.startDate}
               onChange={(e) =>
-                handleEntriesFilterChange("startDate", e.target.value)
+                handleEntriesFilterChange('startDate', e.target.value)
               }
             />
             <Input
@@ -134,7 +134,7 @@ export default function InventoryMovements() {
               placeholder="Data Fim"
               value={entriesFilters.endDate}
               onChange={(e) =>
-                handleEntriesFilterChange("endDate", e.target.value)
+                handleEntriesFilterChange('endDate', e.target.value)
               }
             />
           </div>
@@ -166,26 +166,26 @@ export default function InventoryMovements() {
 
       <TabsContent value="exits">
         <div className="space-y-4">
-          <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-5">
             <Input
               placeholder="Material"
               value={exitsFilters.material}
               onChange={(e) =>
-                handleExitsFilterChange("material", e.target.value)
+                handleExitsFilterChange('material', e.target.value)
               }
             />
             <Input
               placeholder="Empresa (Cliente)"
               value={exitsFilters.client}
               onChange={(e) =>
-                handleExitsFilterChange("client", e.target.value)
+                handleExitsFilterChange('client', e.target.value)
               }
             />
             <Input
               placeholder="Empregado"
               value={exitsFilters.employee}
               onChange={(e) =>
-                handleExitsFilterChange("employee", e.target.value)
+                handleExitsFilterChange('employee', e.target.value)
               }
             />
             <Input
@@ -193,7 +193,7 @@ export default function InventoryMovements() {
               placeholder="Data Início"
               value={exitsFilters.startDate}
               onChange={(e) =>
-                handleExitsFilterChange("startDate", e.target.value)
+                handleExitsFilterChange('startDate', e.target.value)
               }
             />
             <Input
@@ -201,7 +201,7 @@ export default function InventoryMovements() {
               placeholder="Data Fim"
               value={exitsFilters.endDate}
               onChange={(e) =>
-                handleExitsFilterChange("endDate", e.target.value)
+                handleExitsFilterChange('endDate', e.target.value)
               }
             />
           </div>

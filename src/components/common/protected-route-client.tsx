@@ -1,9 +1,9 @@
-"use client";
+'use client';
 
-import React, { ReactNode, useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
-import Cookies from "js-cookie";
-import jwt from "jsonwebtoken";
+import React, { ReactNode, useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
+import Cookies from 'js-cookie';
+import jwt from 'jsonwebtoken';
 
 interface ProtectedRouteProps {
   children: ReactNode;
@@ -14,10 +14,10 @@ const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children }) => {
   const router = useRouter();
 
   useEffect(() => {
-    const token = Cookies.get("token");
+    const token = Cookies.get('token');
 
     if (!token) {
-      router.push("/login");
+      router.push('/login');
     } else {
       try {
         const decodedToken = jwt.decode(token) as jwt.JwtPayload;
@@ -26,11 +26,11 @@ const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children }) => {
         if (decodedToken.exp && decodedToken.exp > currentTime) {
           setLoading(false);
         } else {
-          router.push("/login");
+          router.push('/login');
         }
       } catch (error) {
-        console.error("Erro ao decodificar o token:", error);
-        router.push("/login");
+        console.error('Erro ao decodificar o token:', error);
+        router.push('/login');
       }
     }
   }, [router]);
@@ -40,7 +40,7 @@ const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children }) => {
   }
 
   return (
-    <div className="w-full h-full flex justify-center bg-gray-100">
+    <div className="flex h-full w-full justify-center bg-gray-100 min-h-[40rem]">
       {children}
     </div>
   );

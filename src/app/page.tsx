@@ -1,5 +1,5 @@
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
 import {
   Table,
   TableBody,
@@ -7,25 +7,25 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@/components/ui/table";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import LogoutButton from "@/components/logoutButton";
-import ProtectedRoute from "@/components/protected-route-server";
+} from '@/components/ui/table';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import LogoutButton from '@/components/common/logoutButton';
+import ProtectedRoute from '@/components/common/protected-route-server';
 
 // Simula busca de dados do banco de dados
 async function getCompanies() {
   // Em uma aplicação real, isso seria uma chamada a um banco de dados ou API
   return [
     {
-      name: "Empresa A",
+      name: 'Empresa A',
       employeesCount: 100,
       itemsInTime: 80,
       itemsNearExpiration: 15,
       itemsExpired: 5,
     },
     {
-      name: "Empresa B",
+      name: 'Empresa B',
       employeesCount: 50,
       itemsInTime: 40,
       itemsNearExpiration: 8,
@@ -38,34 +38,34 @@ async function getEmployees() {
   // Em uma aplicação real, isso seria uma chamada a um banco de dados ou API
   return [
     {
-      name: "João Silva",
-      cpf: "123.456.789-00",
-      role: "Operador",
-      status: "Ativo",
+      name: 'João Silva',
+      cpf: '123.456.789-00',
+      role: 'Operador',
+      status: 'Ativo',
       items: [
         {
-          name: "Capacete",
-          receivedDate: "2023-01-01",
+          name: 'Capacete',
+          receivedDate: '2023-01-01',
           quantity: 1,
-          replacementDate: "2023-12-31",
-          validity: "2024-01-01",
-          nextReplacement: "2023-12-31",
+          replacementDate: '2023-12-31',
+          validity: '2024-01-01',
+          nextReplacement: '2023-12-31',
         },
       ],
     },
     {
-      name: "Maria Santos",
-      cpf: "987.654.321-00",
-      role: "Supervisora",
-      status: "Ativo",
+      name: 'Maria Santos',
+      cpf: '987.654.321-00',
+      role: 'Supervisora',
+      status: 'Ativo',
       items: [
         {
-          name: "Luvas",
-          receivedDate: "2023-02-01",
+          name: 'Luvas',
+          receivedDate: '2023-02-01',
           quantity: 2,
-          replacementDate: "2023-08-01",
-          validity: "2023-08-01",
-          nextReplacement: "2023-08-01",
+          replacementDate: '2023-08-01',
+          validity: '2023-08-01',
+          nextReplacement: '2023-08-01',
         },
       ],
     },
@@ -90,8 +90,8 @@ export default async function DashboardPage() {
 
   return (
     <ProtectedRoute>
-      <div className="container min-h-[40rem] mx-auto p-4">
-        <h1 className="text-3xl font-bold mb-6">Dashboard da Empresa</h1>
+      <div className="container mx-auto p-4">
+        <h1 className="mb-6 text-3xl font-bold">Dashboard da Empresa</h1>
 
         <Tabs defaultValue="general">
           <TabsList>
@@ -107,7 +107,7 @@ export default async function DashboardPage() {
               <CardContent>
                 <form
                   action="/api/filter-companies"
-                  className="flex gap-4 mb-4"
+                  className="mb-4 flex gap-4"
                 >
                   <Input name="companyName" placeholder="Filtrar por Empresa" />
                   <Button type="submit">Filtrar</Button>
@@ -130,15 +130,15 @@ export default async function DashboardPage() {
                         <TableCell>{company.name}</TableCell>
                         <TableCell>{company.employeesCount}</TableCell>
                         <TableCell>
-                          <span className="inline-block w-4 h-4 rounded-full bg-green-500 mr-2"></span>
+                          <span className="mr-2 inline-block h-4 w-4 rounded-full bg-green-500"></span>
                           {company.itemsInTime}
                         </TableCell>
                         <TableCell>
-                          <span className="inline-block w-4 h-4 rounded-full bg-yellow-500 mr-2"></span>
+                          <span className="mr-2 inline-block h-4 w-4 rounded-full bg-yellow-500"></span>
                           {company.itemsNearExpiration}
                         </TableCell>
                         <TableCell>
-                          <span className="inline-block w-4 h-4 rounded-full bg-red-500 mr-2"></span>
+                          <span className="mr-2 inline-block h-4 w-4 rounded-full bg-red-500"></span>
                           {company.itemsExpired}
                         </TableCell>
                         <TableCell>
@@ -210,8 +210,6 @@ export default async function DashboardPage() {
             </Card>
           </TabsContent>
         </Tabs>
-
-        <LogoutButton />
       </div>
     </ProtectedRoute>
   );

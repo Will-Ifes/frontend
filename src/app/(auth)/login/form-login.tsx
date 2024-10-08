@@ -1,11 +1,11 @@
-"use client";
+'use client';
 
-import React from "react";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { z } from "zod";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
+import React from 'react';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { z } from 'zod';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
 import {
   Form,
   FormControl,
@@ -13,7 +13,7 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/form";
+} from '@/components/ui/form';
 import {
   Card,
   CardContent,
@@ -21,15 +21,15 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
-import { AlertCircle } from "lucide-react";
-import Link from "next/link";
+} from '@/components/ui/card';
+import { AlertCircle } from 'lucide-react';
+import Link from 'next/link';
 
 const LoginSchema = z.object({
-  email: z.string().email("Insira um email válido"),
+  email: z.string().email('Insira um email válido'),
   password: z
     .string()
-    .min(8, { message: "Senha deve ter no mínimo 8 caracteres" }),
+    .min(8, { message: 'Senha deve ter no mínimo 8 caracteres' }),
 });
 
 type FormData = z.infer<typeof LoginSchema>;
@@ -43,13 +43,13 @@ export default function FormLogin({ onSubmit, error }: FormLoginProps) {
   const form = useForm<FormData>({
     resolver: zodResolver(LoginSchema),
     defaultValues: {
-      email: "",
-      password: "",
+      email: '',
+      password: '',
     },
   });
 
   return (
-    <Card className="w-full max-w-md mx-auto">
+    <Card className="mx-auto w-full max-w-md">
       <CardHeader>
         <CardTitle>Login</CardTitle>
         <CardDescription>
@@ -85,7 +85,7 @@ export default function FormLogin({ onSubmit, error }: FormLoginProps) {
                 </FormItem>
               )}
             />
-            <div className="flex justify-between items-center">
+            <div className="flex items-center justify-between">
               <Link
                 href="/forgot-password"
                 className="text-sm text-primary hover:underline"
@@ -104,10 +104,10 @@ export default function FormLogin({ onSubmit, error }: FormLoginProps) {
           </form>
         </Form>
       </CardContent>
-      <CardFooter className="flex flex-col space-y-4 mt-6">
+      <CardFooter className="mt-6 flex flex-col space-y-4">
         <div className="text-center">
           <span className="text-sm text-muted-foreground">
-            Não tem uma conta?{" "}
+            Não tem uma conta?{' '}
           </span>
           <Link
             href="/register"

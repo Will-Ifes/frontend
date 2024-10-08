@@ -36,9 +36,16 @@ const exitSchema = z.object({
 });
 
 export default function InventoryExit() {
-  const [items, setItems] = useState([]);
+  const [items, setItems] = useState<{ code: string; quantity: number }[]>([]);
 
-  const form = useForm({
+  type FormValues = {
+    client: string;
+    deliveryDate: string;
+    items: { code: string; quantity: number }[];
+    employees: string;
+  };
+  
+  const form = useForm<FormValues>({
     resolver: zodResolver(exitSchema),
     defaultValues: {
       client: "",
@@ -48,7 +55,7 @@ export default function InventoryExit() {
     },
   });
 
-  const onSubmit = (data) => {
+  const onSubmit = (data: z.infer<typeof exitSchema>) => {
     console.log(data);
     // Implement API call to save exit and generate "Ficha de Entrega de Material"
   };

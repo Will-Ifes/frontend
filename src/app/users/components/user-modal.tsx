@@ -1,15 +1,15 @@
-import { z } from "zod";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from 'zod';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
 import {
   Dialog,
   DialogContent,
   DialogHeader,
   DialogTitle,
   DialogFooter,
-} from "@/components/ui/dialog";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
+} from '@/components/ui/dialog';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
 import {
   Form,
   FormControl,
@@ -17,16 +17,16 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/form";
+} from '@/components/ui/form';
 
 const userSchema = z.object({
-  name: z.string().min(1, "Name is required"),
-  cpf: z.string().regex(/^\d{3}\.\d{3}\.\d{3}-\d{2}$/, "Invalid CPF format"),
-  company: z.string().min(1, "Company is required"),
+  name: z.string().min(1, 'Name is required'),
+  cpf: z.string().regex(/^\d{3}\.\d{3}\.\d{3}-\d{2}$/, 'Invalid CPF format'),
+  company: z.string().min(1, 'Company is required'),
   birthDate: z
     .string()
-    .regex(/^\d{4}-\d{2}-\d{2}$/, "Invalid date format (YYYY-MM-DD)"),
-  dailyExposureHours: z.number().min(0).max(24, "Cannot exceed 24 hours"),
+    .regex(/^\d{4}-\d{2}-\d{2}$/, 'Invalid date format (YYYY-MM-DD)'),
+  dailyExposureHours: z.number().min(0).max(24, 'Cannot exceed 24 hours'),
 });
 
 interface UserModalProps {
@@ -59,10 +59,10 @@ export default function UserModal({
   const form = useForm({
     resolver: zodResolver(userSchema),
     defaultValues: user || {
-      name: "",
-      cpf: "",
-      company: "",
-      birthDate: "",
+      name: '',
+      cpf: '',
+      company: '',
+      birthDate: '',
       dailyExposureHours: 0,
     },
   });
@@ -81,7 +81,7 @@ export default function UserModal({
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
-          <DialogTitle>{user ? "Edit User" : "Create User"}</DialogTitle>
+          <DialogTitle>{user ? 'Edit User' : 'Create User'}</DialogTitle>
         </DialogHeader>
         <Form {...form}>
           <form

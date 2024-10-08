@@ -1,6 +1,6 @@
-import { useState } from "react";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
+import { useState } from 'react';
+import { Input } from '@/components/ui/input';
+import { Button } from '@/components/ui/button';
 import {
   Table,
   TableBody,
@@ -8,25 +8,25 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@/components/ui/table";
-import { FileDown, Plus } from "lucide-react";
+} from '@/components/ui/table';
+import { FileDown, Plus } from 'lucide-react';
 
 // Mock data - replace with actual API calls
 const mockItems = [
   {
-    code: "001",
-    description: "Item 1",
-    brand: "Brand A",
-    unit: "pcs",
+    code: '001',
+    description: 'Item 1',
+    brand: 'Brand A',
+    unit: 'pcs',
     quantity: 100,
     avgPurchaseValue: 10.5,
     avgMonthlyConsumption: 20,
   },
   {
-    code: "002",
-    description: "Item 2",
-    brand: "Brand B",
-    unit: "kg",
+    code: '002',
+    description: 'Item 2',
+    brand: 'Brand B',
+    unit: 'kg',
     quantity: 50,
     avgPurchaseValue: 25.0,
     avgMonthlyConsumption: 5,
@@ -36,9 +36,9 @@ const mockItems = [
 export default function InventoryList() {
   const [items, setItems] = useState(mockItems);
   const [filters, setFilters] = useState({
-    code: "",
-    description: "",
-    brand: "",
+    code: '',
+    description: '',
+    brand: '',
   });
 
   const handleItens = () => {
@@ -46,10 +46,10 @@ export default function InventoryList() {
     setItems([
       ...items,
       {
-        code: "",
-        description: "",
-        brand: "",
-        unit: "",
+        code: '',
+        description: '',
+        brand: '',
+        unit: '',
         quantity: 0,
         avgPurchaseValue: 0,
         avgMonthlyConsumption: 0,
@@ -69,33 +69,33 @@ export default function InventoryList() {
       item.description
         .toLowerCase()
         .includes(filters.description.toLowerCase()) &&
-      item.brand.toLowerCase().includes(filters.brand.toLowerCase())
+      item.brand.toLowerCase().includes(filters.brand.toLowerCase()),
   );
 
   const handleExport = () => {
     // Implement export functionality
-    console.log("Exporting data...");
+    console.log('Exporting data...');
   };
 
   return (
     <div>
-      <div className="flex flex-wrap gap-4 mb-4">
+      <div className="mb-4 flex flex-wrap gap-4">
         <Input
           placeholder="Código"
           value={filters.code}
-          onChange={(e) => handleFilterChange("code", e.target.value)}
+          onChange={(e) => handleFilterChange('code', e.target.value)}
           className="max-w-xs"
         />
         <Input
           placeholder="Descrição"
           value={filters.description}
-          onChange={(e) => handleFilterChange("description", e.target.value)}
+          onChange={(e) => handleFilterChange('description', e.target.value)}
           className="max-w-xs"
         />
         <Input
           placeholder="Marca"
           value={filters.brand}
-          onChange={(e) => handleFilterChange("brand", e.target.value)}
+          onChange={(e) => handleFilterChange('brand', e.target.value)}
           className="max-w-xs"
         />
         <Button onClick={handleExport}>

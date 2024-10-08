@@ -1,11 +1,11 @@
-"use client";
+'use client';
 
-import React from "react";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { z } from "zod";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
+import React from 'react';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { z } from 'zod';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
 import {
   Form,
   FormControl,
@@ -13,7 +13,7 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/form";
+} from '@/components/ui/form';
 import {
   Card,
   CardContent,
@@ -21,36 +21,36 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
-import { AlertCircle } from "lucide-react";
-import Link from "next/link";
+} from '@/components/ui/card';
+import { AlertCircle } from 'lucide-react';
+import Link from 'next/link';
 
 const RegisterSchema = z
   .object({
     nome: z
       .string()
-      .min(2, { message: "Nome deve ter no mínimo 2 caracteres" }),
+      .min(2, { message: 'Nome deve ter no mínimo 2 caracteres' }),
     cpf: z
       .string()
-      .regex(/^\d{3}\.\d{3}\.\d{3}-\d{2}$/, { message: "CPF inválido" }),
+      .regex(/^\d{3}\.\d{3}\.\d{3}-\d{2}$/, { message: 'CPF inválido' }),
     empresa: z
       .string()
-      .min(2, { message: "Empresa deve ter no mínimo 2 caracteres" }),
+      .min(2, { message: 'Empresa deve ter no mínimo 2 caracteres' }),
     funcao: z
       .string()
-      .min(2, { message: "Função deve ter no mínimo 2 caracteres" }),
-    email: z.string().email("Insira um email válido"),
+      .min(2, { message: 'Função deve ter no mínimo 2 caracteres' }),
+    email: z.string().email('Insira um email válido'),
     telefone: z
       .string()
-      .regex(/^$$\d{2}$$ \d{5}-\d{4}$/, { message: "Telefone inválido" }),
+      .regex(/^$$\d{2}$$ \d{5}-\d{4}$/, { message: 'Telefone inválido' }),
     senha: z
       .string()
-      .min(8, { message: "Senha deve ter no mínimo 8 caracteres" }),
+      .min(8, { message: 'Senha deve ter no mínimo 8 caracteres' }),
     confirmarSenha: z.string(),
   })
   .refine((data) => data.senha === data.confirmarSenha, {
-    message: "As senhas não coincidem",
-    path: ["confirmarSenha"],
+    message: 'As senhas não coincidem',
+    path: ['confirmarSenha'],
   });
 
 type FormData = z.infer<typeof RegisterSchema>;
@@ -64,19 +64,19 @@ export default function FormRegister({ onSubmit, error }: FormRegisterProps) {
   const form = useForm<FormData>({
     resolver: zodResolver(RegisterSchema),
     defaultValues: {
-      nome: "",
-      cpf: "",
-      empresa: "",
-      funcao: "",
-      email: "",
-      telefone: "",
-      senha: "",
-      confirmarSenha: "",
+      nome: '',
+      cpf: '',
+      empresa: '',
+      funcao: '',
+      email: '',
+      telefone: '',
+      senha: '',
+      confirmarSenha: '',
     },
   });
 
   return (
-    <Card className="w-full min-w-[800px] max-w-[1000px] mx-auto">
+    <Card className="mx-auto w-full min-w-[800px] max-w-[1000px]">
       <CardHeader>
         <CardTitle className="text-2xl">
           Cadastro de Usuário/Colaborador
@@ -229,7 +229,7 @@ export default function FormRegister({ onSubmit, error }: FormRegisterProps) {
               />
             </div>
             <div className="w-full text-center">
-              <Button type="submit" className="w-96 relative">
+              <Button type="submit" className="relative w-96">
                 Faça o seu Cadastro Aqui
                 {error && (
                   <span className="absolute top-11 flex items-center gap-2 text-red-500">
@@ -241,10 +241,10 @@ export default function FormRegister({ onSubmit, error }: FormRegisterProps) {
           </form>
         </Form>
       </CardContent>
-      <CardFooter className="flex flex-col space-y-4 mt-6">
+      <CardFooter className="mt-6 flex flex-col space-y-4">
         <div className="text-center">
           <span className="text-sm text-muted-foreground">
-            Já tem uma conta?{" "}
+            Já tem uma conta?{' '}
           </span>
           <Link href="/login" className="text-sm text-primary hover:underline">
             Faça login

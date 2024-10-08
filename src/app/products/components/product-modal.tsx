@@ -1,15 +1,15 @@
-import { z } from "zod";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from 'zod';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
 import {
   Dialog,
   DialogContent,
   DialogHeader,
   DialogTitle,
   DialogFooter,
-} from "@/components/ui/dialog";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
+} from '@/components/ui/dialog';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
 import {
   Form,
   FormControl,
@@ -17,16 +17,16 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/form";
+} from '@/components/ui/form';
 
 const productSchema = z.object({
-  name: z.string().min(1, "Name is required"),
-  description: z.string().min(1, "Description is required"),
+  name: z.string().min(1, 'Name is required'),
+  description: z.string().min(1, 'Description is required'),
   complement: z.string().optional(),
-  brand: z.string().min(1, "Brand is required"),
-  unit: z.string().min(1, "Unit is required"),
-  quantity: z.number().min(0, "Quantity must be 0 or greater"),
-  suppliers: z.string().min(1, "At least one supplier is required"),
+  brand: z.string().min(1, 'Brand is required'),
+  unit: z.string().min(1, 'Unit is required'),
+  quantity: z.number().min(0, 'Quantity must be 0 or greater'),
+  suppliers: z.string().min(1, 'At least one supplier is required'),
 });
 
 interface ProductModalProps {
@@ -61,13 +61,13 @@ export default function ProductModal({
   const form = useForm({
     resolver: zodResolver(productSchema),
     defaultValues: product || {
-      name: "",
-      description: "",
-      complement: "",
-      brand: "",
-      unit: "",
+      name: '',
+      description: '',
+      complement: '',
+      brand: '',
+      unit: '',
       quantity: 0,
-      suppliers: "",
+      suppliers: '',
     },
   });
 
@@ -88,7 +88,7 @@ export default function ProductModal({
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
           <DialogTitle>
-            {product ? "Edit Product" : "Create Product"}
+            {product ? 'Edit Product' : 'Create Product'}
           </DialogTitle>
         </DialogHeader>
         <Form {...form}>

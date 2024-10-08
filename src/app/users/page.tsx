@@ -1,9 +1,9 @@
-"use client";
+'use client';
 
-import { useState } from "react";
-import { Plus, Pencil, Trash2, FileDown, Eye } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
+import { useState } from 'react';
+import { Plus, Pencil, Trash2, FileDown, Eye } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
 import {
   Table,
   TableBody,
@@ -11,35 +11,36 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@/components/ui/table";
-import UserModal from "./components/user-modal";
-import ViewUserModal from "./components/view-user-modal";
-import DeleteConfirmationModal from "../products/components/delete-confirmation-modal";
+} from '@/components/ui/table';
+import UserModal from './components/user-modal';
+import ViewUserModal from './components/view-user-modal';
+import DeleteConfirmationModal from '../products/components/delete-confirmation-modal';
+import ProtectedRoute from '@/components/common/protected-route-client';
 
 // Mock data - replace with actual API calls in a real application
 const mockUsers = [
   {
-    id: "1",
-    name: "John Doe",
-    cpf: "123.456.789-00",
-    company: "ABC Corp",
-    birthDate: "1990-01-01",
+    id: '1',
+    name: 'John Doe',
+    cpf: '123.456.789-00',
+    company: 'ABC Corp',
+    birthDate: '1990-01-01',
     dailyExposureHours: 8,
   },
   {
-    id: "2",
-    name: "Jane Smith",
-    cpf: "987.654.321-00",
-    company: "XYZ Inc",
-    birthDate: "1985-05-15",
+    id: '2',
+    name: 'Jane Smith',
+    cpf: '987.654.321-00',
+    company: 'XYZ Inc',
+    birthDate: '1985-05-15',
     dailyExposureHours: 6,
   },
   {
-    id: "3",
-    name: "Bob Johnson",
-    cpf: "456.789.123-00",
-    company: "DEF Ltd",
-    birthDate: "1992-11-30",
+    id: '3',
+    name: 'Bob Johnson',
+    cpf: '456.789.123-00',
+    company: 'DEF Ltd',
+    birthDate: '1992-11-30',
     dailyExposureHours: 7,
   },
 ];
@@ -50,13 +51,13 @@ export default function AdminUsersPage() {
   const [editingUser, setEditingUser] = useState<User | null>(null);
   const [deletingUser, setDeletingUser] = useState<User | null>(null);
   const [viewingUser, setViewingUser] = useState<User | null>(null);
-  const [filters, setFilters] = useState({ name: "", cpf: "", company: "" });
+  const [filters, setFilters] = useState({ name: '', cpf: '', company: '' });
 
   const filteredUsers = users.filter(
     (user) =>
       user.name.toLowerCase().includes(filters.name.toLowerCase()) &&
       user.cpf.includes(filters.cpf) &&
-      user.company.toLowerCase().includes(filters.company.toLowerCase())
+      user.company.toLowerCase().includes(filters.company.toLowerCase()),
   );
 
   interface User {
@@ -68,7 +69,7 @@ export default function AdminUsersPage() {
     dailyExposureHours: number;
   }
 
-  const handleCreateUser = (newUser: Omit<User, "id">): void => {
+  const handleCreateUser = (newUser: Omit<User, 'id'>): void => {
     setUsers((prev) => [
       ...prev,
       { ...newUser, id: (prev.length + 1).toString() },
@@ -85,7 +86,7 @@ export default function AdminUsersPage() {
     dailyExposureHours: number;
   }): void => {
     setUsers((prev) =>
-      prev.map((u) => (u.id === updatedUser.id ? { ...u, ...updatedUser } : u))
+      prev.map((u) => (u.id === updatedUser.id ? { ...u, ...updatedUser } : u)),
     );
     setEditingUser(null);
   };
@@ -97,14 +98,15 @@ export default function AdminUsersPage() {
 
   const handleExport = () => {
     // Implement export functionality here
-    console.log("Exporting data...");
+    console.log('Exporting data...');
   };
 
   return (
-    <div className="container min-h-[40rem] mx-auto p-4">
-      <h1 className="text-2xl font-bold mb-4">User Management</h1>
+    <ProtectedRoute >
+    <div className="container mx-auto min-h-[40rem] p-4">
+      <h1 className="mb-4 text-2xl font-bold">User Management</h1>
 
-      <div className="flex flex-wrap gap-4 mb-4">
+      <div className="mb-4 flex flex-wrap gap-4">
         <Input
           placeholder="Filter by name"
           value={filters.name}
@@ -213,5 +215,6 @@ export default function AdminUsersPage() {
         />
       )}
     </div>
+    </ProtectedRoute>
   );
 }

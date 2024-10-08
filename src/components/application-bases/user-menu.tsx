@@ -1,8 +1,8 @@
-"use client";
+'use client';
 
-import { useState } from "react";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Button } from "@/components/ui/button";
+import { useState } from 'react';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { Button } from '@/components/ui/button';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -10,39 +10,39 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { User, Settings } from "lucide-react";
-import LogoutButton from "../logoutButton";
-import Cookies from "js-cookie";
-import { useRouter } from "next/navigation";
+} from '@/components/ui/dropdown-menu';
+import { User, Settings } from 'lucide-react';
+import LogoutButton from '../common/logoutButton';
+import Cookies from 'js-cookie';
+import { useRouter } from 'next/navigation';
 
 export default function UserMenu() {
   const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
 
   const handleLogout = async () => {
-    await fetch("/api/auth/signout", {
-      method: "POST",
+    await fetch('/api/auth/signout', {
+      method: 'POST',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
     });
 
     // Remover o token dos cookies
-    Cookies.remove("token");
+    Cookies.remove('token');
 
     // Remover o usuário do localStorage
-    localStorage.removeItem("user");
+    localStorage.removeItem('user');
 
     // Redirecionar para a página de login
-    router.push("/login");
+    router.push('/login');
   };
 
   // Dados mockados do usuário - substitua por dados reais no futuro
   const user = {
-    name: "John Doe",
-    email: "john@example.com",
-    avatar: "/placeholder.svg",
+    name: 'John Doe',
+    email: 'john@example.com',
+    avatar: '/placeholder.svg',
   };
 
   return (

@@ -1,9 +1,9 @@
-import { useState } from "react";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import * as z from "zod";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
+import { useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import * as z from 'zod';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
 import {
   Form,
   FormControl,
@@ -11,7 +11,7 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/form";
+} from '@/components/ui/form';
 import {
   Table,
   TableBody,
@@ -19,22 +19,22 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@/components/ui/table";
+} from '@/components/ui/table';
 
 const entrySchema = z.object({
-  supplier: z.string().min(1, "Fornecedor é obrigatório"),
-  invoice: z.string().min(1, "Nota Fiscal é obrigatória"),
-  date: z.string().min(1, "Data é obrigatória"),
+  supplier: z.string().min(1, 'Fornecedor é obrigatório'),
+  invoice: z.string().min(1, 'Nota Fiscal é obrigatória'),
+  date: z.string().min(1, 'Data é obrigatória'),
   items: z
     .array(
       z.object({
-        code: z.string().min(1, "Código é obrigatório"),
-        quantity: z.number().min(1, "Quantidade deve ser maior que zero"),
-        value: z.number().min(0, "Valor não pode ser negativo"),
+        code: z.string().min(1, 'Código é obrigatório'),
+        quantity: z.number().min(1, 'Quantidade deve ser maior que zero'),
+        value: z.number().min(0, 'Valor não pode ser negativo'),
         expirationDate: z.string().optional(),
-      })
+      }),
     )
-    .min(1, "Adicione pelo menos um item"),
+    .min(1, 'Adicione pelo menos um item'),
 });
 
 export default function InventoryEntry() {
@@ -45,9 +45,9 @@ export default function InventoryEntry() {
   const form = useForm<z.infer<typeof entrySchema>>({
     resolver: zodResolver(entrySchema),
     defaultValues: {
-      supplier: "",
-      invoice: "",
-      date: "",
+      supplier: '',
+      invoice: '',
+      date: '',
       items: [],
     },
   });
@@ -60,14 +60,14 @@ export default function InventoryEntry() {
   const addItem = () => {
     setItems([
       ...items,
-      { code: "", quantity: 0, value: 0, expirationDate: "" },
+      { code: '', quantity: 0, value: 0, expirationDate: '' },
     ]);
   };
 
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
           <FormField
             control={form.control}
             name="supplier"

@@ -1,8 +1,8 @@
-"use client";
+'use client';
 
-import { useState } from "react";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
+import { useState } from 'react';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
 
 import {
   Table,
@@ -11,43 +11,43 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@/components/ui/table";
-import { PlusIcon, FileDownIcon, Pencil, Trash2 } from "lucide-react";
-import ProductModal from "./components/product-modal";
-import DeleteConfirmationModal from "./components/delete-confirmation-modal";
-import ProtectedRoute from "@/components/protected-route-client";
+} from '@/components/ui/table';
+import { PlusIcon, FileDownIcon, Pencil, Trash2 } from 'lucide-react';
+import ProductModal from './components/product-modal';
+import DeleteConfirmationModal from './components/delete-confirmation-modal';
+import ProtectedRoute from '@/components/common/protected-route-client';
 
 // Mock data - replace with actual API calls in a real application
 const mockProducts = [
   {
     id: 1,
-    name: "Product 1",
-    description: "Description 1",
-    complement: "Complement 1",
-    brand: "Brand 1",
-    unit: "Unit 1",
+    name: 'Product 1',
+    description: 'Description 1',
+    complement: 'Complement 1',
+    brand: 'Brand 1',
+    unit: 'Unit 1',
     quantity: 10,
-    suppliers: ["Supplier 1", "Supplier 2"],
+    suppliers: ['Supplier 1', 'Supplier 2'],
   },
   {
     id: 2,
-    name: "Product 2",
-    description: "Description 2",
-    complement: "Complement 2",
-    brand: "Brand 2",
-    unit: "Unit 2",
+    name: 'Product 2',
+    description: 'Description 2',
+    complement: 'Complement 2',
+    brand: 'Brand 2',
+    unit: 'Unit 2',
     quantity: 20,
-    suppliers: ["Supplier 3"],
+    suppliers: ['Supplier 3'],
   },
 ];
 
 export default function ProductsPage() {
   const [products, setProducts] = useState(mockProducts);
   const [filters, setFilters] = useState({
-    name: "",
-    brand: "",
-    code: "",
-    supplier: "",
+    name: '',
+    brand: '',
+    code: '',
+    supplier: '',
   });
   const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
   const [editingProduct, setEditingProduct] = useState<{
@@ -82,9 +82,9 @@ export default function ProductsPage() {
       (filters.code ? product.id.toString() === filters.code : true) &&
       (filters.supplier
         ? product.suppliers.some((s) =>
-            s.toLowerCase().includes(filters.supplier.toLowerCase())
+            s.toLowerCase().includes(filters.supplier.toLowerCase()),
           )
-        : true)
+        : true),
   );
 
   const handleCreateProduct = (newProduct: {
@@ -101,8 +101,8 @@ export default function ProductsPage() {
       {
         ...newProduct,
         id: prev.length + 1,
-        complement: newProduct.complement || "",
-        suppliers: newProduct.suppliers.split(", "),
+        complement: newProduct.complement || '',
+        suppliers: newProduct.suppliers.split(', '),
       },
     ]);
     setIsCreateModalOpen(false);
@@ -124,10 +124,10 @@ export default function ProductsPage() {
           ? {
               ...p,
               ...updatedProduct,
-              suppliers: updatedProduct.suppliers.split(", "),
+              suppliers: updatedProduct.suppliers.split(', '),
             }
-          : p
-      )
+          : p,
+      ),
     );
     setEditingProduct(null);
   };
@@ -139,40 +139,40 @@ export default function ProductsPage() {
 
   const exportToCSV = () => {
     // Implement CSV export logic here
-    console.log("Exporting to CSV...");
+    console.log('Exporting to CSV...');
   };
 
   return (
     <ProtectedRoute>
-      <div className="container min-h-[40rem] mx-auto p-4">
-        <h1 className="text-2xl font-bold mb-4">Product Management</h1>
+      <div className="container mx-auto min-h-[40rem] p-4">
+        <h1 className="mb-4 text-2xl font-bold">Product Management</h1>
 
         {/* Filters */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-4">
+        <div className="mb-4 grid grid-cols-1 gap-4 md:grid-cols-4">
           <Input
             placeholder="Name"
             value={filters.name}
-            onChange={(e) => handleFilterChange("name", e.target.value)}
+            onChange={(e) => handleFilterChange('name', e.target.value)}
           />
           <Input
             placeholder="Brand"
             value={filters.brand}
-            onChange={(e) => handleFilterChange("brand", e.target.value)}
+            onChange={(e) => handleFilterChange('brand', e.target.value)}
           />
           <Input
             placeholder="Code"
             value={filters.code}
-            onChange={(e) => handleFilterChange("code", e.target.value)}
+            onChange={(e) => handleFilterChange('code', e.target.value)}
           />
           <Input
             placeholder="Supplier"
             value={filters.supplier}
-            onChange={(e) => handleFilterChange("supplier", e.target.value)}
+            onChange={(e) => handleFilterChange('supplier', e.target.value)}
           />
         </div>
 
         {/* Actions */}
-        <div className="flex justify-between mb-4">
+        <div className="mb-4 flex justify-between">
           <Button onClick={() => setIsCreateModalOpen(true)}>
             <PlusIcon className="mr-2 h-4 w-4" /> Add Product
           </Button>
@@ -202,7 +202,7 @@ export default function ProductsPage() {
                 <TableCell>{product.brand}</TableCell>
                 <TableCell>{product.unit}</TableCell>
                 <TableCell>{product.quantity}</TableCell>
-                <TableCell>{product.suppliers.join(", ")}</TableCell>
+                <TableCell>{product.suppliers.join(', ')}</TableCell>
                 <TableCell>
                   <Button
                     variant="ghost"
@@ -239,7 +239,7 @@ export default function ProductsPage() {
             }
             product={{
               ...editingProduct,
-              suppliers: editingProduct.suppliers.join(", "),
+              suppliers: editingProduct.suppliers.join(', '),
             }}
           />
         )}
