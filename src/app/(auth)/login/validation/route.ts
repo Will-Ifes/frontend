@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import { z } from "zod";
-import { getUserByEmail } from "../../../../../actions/user";
+import { getUserByEmail } from "../../../../actions/user";
 
 const loginSchema = z.object({
   email: z.string().email("Insira um email válido"),

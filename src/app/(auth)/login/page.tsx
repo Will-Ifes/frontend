@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from "react";
 import FormLogin from "./form-login";
 import { useRouter } from "next/navigation";
-import { loginUser } from "../../../../actions/user";
+import { loginUser } from "../../../actions/user";
 import Cookies from "js-cookie";
 import jwt from "jsonwebtoken";
 

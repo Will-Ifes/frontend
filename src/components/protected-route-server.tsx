@@ -12,7 +12,7 @@ export default function ProtectedRoute({ children }: ProtectedRouteProps) {
   const token = cookieStore.get("token")?.value;
 
   if (!token) {
-    redirect("/api/auth/login");
+    redirect("/login");
   }
 
   try {
@@ -29,8 +29,12 @@ export default function ProtectedRoute({ children }: ProtectedRouteProps) {
     }
   } catch (error) {
     console.error("Erro ao verificar token:", error);
-    redirect("/api/auth/login");
+    redirect("/auth/login");
   }
 
-  return <>{children}</>;
+  return (
+    <div className="w-full min-h-full flex justify-center bg-gray-100">
+      {children}
+    </div>
+  );
 }

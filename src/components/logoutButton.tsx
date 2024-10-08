@@ -1,6 +1,7 @@
 "use client";
 import { useRouter } from "next/navigation";
 import Cookies from "js-cookie";
+import { LogOut } from "lucide-react";
 
 export default function LogoutButton() {
   const router = useRouter();
@@ -20,15 +21,16 @@ export default function LogoutButton() {
     localStorage.removeItem("user");
 
     // Redirecionar para a página de login
-    router.push("/api/auth/login");
+    router.push("/login");
   };
 
   return (
     <button
       onClick={handleLogout}
-      className="mt-4 px-4 py-2 bg-red-500 text-white rounded hover:bg-red-700"
+      className="flex items-center justify-center px-4 py-2 rounded hover:bg-red-600/60"
     >
-      Logout
+      <LogOut className="mr-2 h-4 w-4" />
+      <span>Log out</span>
     </button>
   );
 }

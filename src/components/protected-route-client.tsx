@@ -17,7 +17,7 @@ const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children }) => {
     const token = Cookies.get("token");
 
     if (!token) {
-      router.push("/api/auth/login");
+      router.push("/login");
     } else {
       try {
         const decodedToken = jwt.decode(token) as jwt.JwtPayload;
@@ -26,20 +26,24 @@ const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children }) => {
         if (decodedToken.exp && decodedToken.exp > currentTime) {
           setLoading(false);
         } else {
-          router.push("/api/auth/login");
+          router.push("/login");
         }
       } catch (error) {
         console.error("Erro ao decodificar o token:", error);
-        router.push("/api/auth/login");
+        router.push("/login");
       }
     }
   }, [router]);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <div>Carregando...</div>;
   }
 
-  return <>{children}</>;
+  return (
+    <div className="w-full h-full flex justify-center bg-gray-100">
+      {children}
+    </div>
+  );
 };
 
 export default ProtectedRoute;
