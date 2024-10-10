@@ -7,7 +7,7 @@ export default function Header() {
         <Sidebar />
         <div className="ml-14 flex flex-1 justify-center">
           <div className="flex h-16 w-40 items-center justify-center rounded bg-muted">
-            <span className="text-muted-foreground">Logo</span>
+            <Image src="/logo.svg" alt="Logo" width={40} height={40} />
           </div>
         </div>
 

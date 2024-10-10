@@ -41,9 +41,9 @@ export default function UserMenu() {
 
   // Dados mockados do usuário - substitua por dados reais no futuro
   const user = {
-    name: 'John Doe',
-    email: 'john@example.com',
-    avatar: '/placeholder.svg',
+    name: 'Ricardo Rocha Ribeiro Gomes',
+    email: 'r3ifes@gmail.com',
+    avatar: 'https://avatars.githubusercontent.com/u/56487669?v=4',
   };
 
   React.useEffect(() => {

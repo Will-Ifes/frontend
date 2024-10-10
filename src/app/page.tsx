@@ -91,16 +91,18 @@ export default async function DashboardPage() {
   return (
     <ProtectedRoute>
       <div className="container mx-auto p-4">
-        <h1 className="mb-6 text-3xl font-bold">Dashboard da Empresa</h1>
+        <Card className="p-6">
+          <h1 className="mb-6 text-3xl font-bold">Dashboard da Empresa</h1>
 
-        <Tabs defaultValue="general">
-          <TabsList>
-            <TabsTrigger value="general">Quadro Geral</TabsTrigger>
-            <TabsTrigger value="employees">Relatório de Empregados</TabsTrigger>
-          </TabsList>
+          <Tabs defaultValue="general">
+            <TabsList>
+              <TabsTrigger value="general">Quadro Geral</TabsTrigger>
+              <TabsTrigger value="employees">
+                Relatório de Empregados
+              </TabsTrigger>
+            </TabsList>
 
-          <TabsContent value="general">
-            <Card>
+            <TabsContent value="general">
               <CardHeader>
                 <CardTitle>Quadro Geral</CardTitle>
               </CardHeader>
@@ -159,11 +161,9 @@ export default async function DashboardPage() {
                   </TableBody>
                 </Table>
               </CardContent>
-            </Card>
-          </TabsContent>
+            </TabsContent>
 
-          <TabsContent value="employees">
-            <Card>
+            <TabsContent value="employees">
               <CardHeader>
                 <CardTitle>Relatório de Empregados</CardTitle>
               </CardHeader>
@@ -207,9 +207,9 @@ export default async function DashboardPage() {
                   </TableBody>
                 </Table>
               </CardContent>
-            </Card>
-          </TabsContent>
-        </Tabs>
+            </TabsContent>
+          </Tabs>
+        </Card>
       </div>
     </ProtectedRoute>
   );

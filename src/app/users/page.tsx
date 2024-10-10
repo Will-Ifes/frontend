@@ -16,6 +16,7 @@ import UserModal from './components/user-modal';
 import ViewUserModal from './components/view-user-modal';
 import DeleteConfirmationModal from '../products/components/delete-confirmation-modal';
 import ProtectedRoute from '@/components/application-bases/protected-route-client';
+import { Card } from '@/components/ui/card';
 
 // Mock data - replace with actual API calls in a real application
 const mockUsers = [
@@ -104,87 +105,89 @@ export default function AdminUsersPage() {
   return (
     <ProtectedRoute>
       <div className="container mx-auto min-h-[40rem] p-4">
-        <h1 className="mb-4 text-2xl font-bold">User Management</h1>
+        <Card className="p-6">
+          <h1 className="mb-4 text-2xl font-bold">User Management</h1>
 
-        <div className="mb-4 flex flex-wrap gap-4">
-          <Input
-            placeholder="Filter by name"
-            value={filters.name}
-            onChange={(e) =>
-              setFilters((prev) => ({ ...prev, name: e.target.value }))
-            }
-            className="max-w-xs"
-          />
-          <Input
-            placeholder="Filter by CPF"
-            value={filters.cpf}
-            onChange={(e) =>
-              setFilters((prev) => ({ ...prev, cpf: e.target.value }))
-            }
-            className="max-w-xs"
-          />
-          <Input
-            placeholder="Filter by company"
-            value={filters.company}
-            onChange={(e) =>
-              setFilters((prev) => ({ ...prev, company: e.target.value }))
-            }
-            className="max-w-xs"
-          />
-          <Button onClick={() => setIsCreateModalOpen(true)}>
-            <Plus className="mr-2 h-4 w-4" /> Add User
-          </Button>
-          <Button onClick={handleExport} variant="outline">
-            <FileDown className="mr-2 h-4 w-4" /> Export
-          </Button>
-        </div>
+          <div className="mb-4 flex flex-wrap gap-4">
+            <Input
+              placeholder="Filter by name"
+              value={filters.name}
+              onChange={(e) =>
+                setFilters((prev) => ({ ...prev, name: e.target.value }))
+              }
+              className="max-w-xs"
+            />
+            <Input
+              placeholder="Filter by CPF"
+              value={filters.cpf}
+              onChange={(e) =>
+                setFilters((prev) => ({ ...prev, cpf: e.target.value }))
+              }
+              className="max-w-xs"
+            />
+            <Input
+              placeholder="Filter by company"
+              value={filters.company}
+              onChange={(e) =>
+                setFilters((prev) => ({ ...prev, company: e.target.value }))
+              }
+              className="max-w-xs"
+            />
+            <Button onClick={() => setIsCreateModalOpen(true)}>
+              <Plus className="mr-2 h-4 w-4" /> Add User
+            </Button>
+            <Button onClick={handleExport} variant="outline">
+              <FileDown className="mr-2 h-4 w-4" /> Export
+            </Button>
+          </div>
 
-        <Table>
-          <TableHeader>
-            <TableRow>
-              <TableHead>Name</TableHead>
-              <TableHead>CPF</TableHead>
-              <TableHead>Company</TableHead>
-              <TableHead>Birth Date</TableHead>
-              <TableHead>Daily Exposure Hours</TableHead>
-              <TableHead>Actions</TableHead>
-            </TableRow>
-          </TableHeader>
-          <TableBody>
-            {filteredUsers.map((user) => (
-              <TableRow key={user.id}>
-                <TableCell>{user.name}</TableCell>
-                <TableCell>{user.cpf}</TableCell>
-                <TableCell>{user.company}</TableCell>
-                <TableCell>{user.birthDate}</TableCell>
-                <TableCell>{user.dailyExposureHours}</TableCell>
-                <TableCell>
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    onClick={() => setViewingUser(user)}
-                  >
-                    <Eye className="h-4 w-4" />
-                  </Button>
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    onClick={() => setEditingUser(user)}
-                  >
-                    <Pencil className="h-4 w-4" />
-                  </Button>
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    onClick={() => setDeletingUser(user)}
-                  >
-                    <Trash2 className="h-4 w-4" />
-                  </Button>
-                </TableCell>
+          <Table>
+            <TableHeader>
+              <TableRow>
+                <TableHead>Name</TableHead>
+                <TableHead>CPF</TableHead>
+                <TableHead>Company</TableHead>
+                <TableHead>Birth Date</TableHead>
+                <TableHead>Daily Exposure Hours</TableHead>
+                <TableHead>Actions</TableHead>
               </TableRow>
-            ))}
-          </TableBody>
-        </Table>
+            </TableHeader>
+            <TableBody>
+              {filteredUsers.map((user) => (
+                <TableRow key={user.id}>
+                  <TableCell>{user.name}</TableCell>
+                  <TableCell>{user.cpf}</TableCell>
+                  <TableCell>{user.company}</TableCell>
+                  <TableCell>{user.birthDate}</TableCell>
+                  <TableCell>{user.dailyExposureHours}</TableCell>
+                  <TableCell>
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      onClick={() => setViewingUser(user)}
+                    >
+                      <Eye className="h-4 w-4" />
+                    </Button>
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      onClick={() => setEditingUser(user)}
+                    >
+                      <Pencil className="h-4 w-4" />
+                    </Button>
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      onClick={() => setDeletingUser(user)}
+                    >
+                      <Trash2 className="h-4 w-4" />
+                    </Button>
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </Card>
 
         <UserModal
           isOpen={isCreateModalOpen}
