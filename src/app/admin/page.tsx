@@ -29,7 +29,7 @@ import {
   FormLabel,
   FormMessage,
 } from '@/components/ui/form';
-import ProtectedRoute from '@/components/common/protected-route-client';
+import ProtectedRoute from '@/components/application-bases/protected-route-client';
 
 // Schema de validação para o formulário de cadastro e filtro
 const employeeSchema = z.object({
@@ -136,7 +136,10 @@ export default function AdminPage() {
         <h1 className="mb-4 text-2xl font-bold">Interface do Administrador</h1>
 
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="mb-8 space-y-8">
+          <form
+            onSubmit={form.handleSubmit(onSubmit)}
+            className="mb-8 space-y-8"
+          >
             <FormField
               control={form.control}
               name="name"
@@ -199,7 +202,9 @@ export default function AdminPage() {
                     <Input
                       type="number"
                       {...field}
-                      onChange={(e) => field.onChange(parseFloat(e.target.value))}
+                      onChange={(e) =>
+                        field.onChange(parseFloat(e.target.value))
+                      }
                     />
                   </FormControl>
                   <FormMessage />

@@ -11,7 +11,7 @@ import {
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import LogoutButton from '@/components/common/logoutButton';
-import ProtectedRoute from '@/components/common/protected-route-server';
+import ProtectedRoute from '@/components/application-bases/protected-route-server';
 
 // Simula busca de dados do banco de dados
 async function getCompanies() {

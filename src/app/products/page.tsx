@@ -15,7 +15,7 @@ import {
 import { PlusIcon, FileDownIcon, Pencil, Trash2 } from 'lucide-react';
 import ProductModal from './components/product-modal';
 import DeleteConfirmationModal from './components/delete-confirmation-modal';
-import ProtectedRoute from '@/components/common/protected-route-client';
+import ProtectedRoute from '@/components/application-bases/protected-route-client';
 
 // Mock data - replace with actual API calls in a real application
 const mockProducts = [

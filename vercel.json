@@ -1,8 +1,8 @@
 {
-    "rewrites": [
-      {
-        "source": "/(.*)",
-        "destination": "http://seu-backend-ip:3333/$1"
-      }
-    ]
-  }
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "http://18.119.17.246:5432/$1"
+    }
+  ]
+}

@@ -25,10 +25,7 @@ export default function LogoutButton() {
   };
 
   return (
-    <button
-      onClick={handleLogout}
-      className="flex items-center justify-center "
-    >
+    <button onClick={handleLogout} className="flex items-center justify-center">
       <LogOut className="mr-2 h-4 w-4" />
       <span>Sair</span>
     </button>

@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 import {
@@ -19,6 +19,7 @@ import { useRouter } from 'next/navigation';
 export default function UserMenu() {
   const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
+  const [hasToken, setHasToken] = useState(false);
 
   const handleLogout = async () => {
     await fetch('/api/auth/signout', {
@@ -44,6 +45,17 @@ export default function UserMenu() {
     email: 'john@example.com',
     avatar: '/placeholder.svg',
   };
+
+  React.useEffect(() => {
+    const token = Cookies.get('token');
+    if (token) {
+      setHasToken(!!token);
+    }
+  }, []);
+
+  if (!hasToken) {
+    return null;
+  }
 
   return (
     <DropdownMenu open={isOpen} onOpenChange={setIsOpen}>

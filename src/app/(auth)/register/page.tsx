@@ -36,7 +36,8 @@ const CreateUserPage: React.FC = () => {
 
     if (result?.error) {
       setError(result.error);
-    } else {handleCreateUser
+    } else {
+      handleCreateUser;
       router.push('/success'); // Redirecionar para uma página de sucesso ou outra página
     }
   };
