@@ -103,110 +103,99 @@ export default async function DashboardPage() {
             </TabsList>
 
             <TabsContent value="general">
-              <CardHeader>
-                <CardTitle>Quadro Geral</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <form
-                  action="/api/filter-companies"
-                  className="mb-4 flex gap-4"
-                >
-                  <Input name="companyName" placeholder="Filtrar por Empresa" />
-                  <Button type="submit">Filtrar</Button>
-                </form>
+              <CardTitle className="py-6">Quadro Geral</CardTitle>
+              <form action="/api/filter-companies" className="mb-4 flex gap-4">
+                <Input name="companyName" placeholder="Filtrar por Empresa" />
+                <Button type="submit">Filtrar</Button>
+              </form>
 
-                <Table>
-                  <TableHeader>
-                    <TableRow>
-                      <TableHead>Empresa</TableHead>
-                      <TableHead>Qtd. Empregados</TableHead>
-                      <TableHead>Itens no Prazo</TableHead>
-                      <TableHead>Itens Próx. Reposição</TableHead>
-                      <TableHead>Itens Fora do Prazo</TableHead>
-                      <TableHead>Ações</TableHead>
+              <Table>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead>Empresa</TableHead>
+                    <TableHead>Qtd. Empregados</TableHead>
+                    <TableHead>Itens no Prazo</TableHead>
+                    <TableHead>Itens Próx. Reposição</TableHead>
+                    <TableHead>Itens Fora do Prazo</TableHead>
+                    <TableHead className="w-1">Ações</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  {companies.map((company, index) => (
+                    <TableRow key={index}>
+                      <TableCell>{company.name}</TableCell>
+                      <TableCell>{company.employeesCount}</TableCell>
+                      <TableCell>
+                        <span className="mr-2 inline-block h-4 w-4 rounded-full bg-green-500"></span>
+                        {company.itemsInTime}
+                      </TableCell>
+                      <TableCell>
+                        <span className="mr-2 inline-block h-4 w-4 rounded-full bg-yellow-500"></span>
+                        {company.itemsNearExpiration}
+                      </TableCell>
+                      <TableCell>
+                        <span className="mr-2 inline-block h-4 w-4 rounded-full bg-red-500"></span>
+                        {company.itemsExpired}
+                      </TableCell>
+                      <TableCell>
+                        <div className="flex gap-2">
+                          <Button variant="outline">Abrir</Button>
+                          <form action="/api/generate-company-report">
+                            <input
+                              type="hidden"
+                              name="companyName"
+                              value={company.name}
+                            />
+                            <Button type="submit">Gerar Relatório</Button>
+                          </form>
+                        </div>
+                      </TableCell>
                     </TableRow>
-                  </TableHeader>
-                  <TableBody>
-                    {companies.map((company, index) => (
-                      <TableRow key={index}>
-                        <TableCell>{company.name}</TableCell>
-                        <TableCell>{company.employeesCount}</TableCell>
-                        <TableCell>
-                          <span className="mr-2 inline-block h-4 w-4 rounded-full bg-green-500"></span>
-                          {company.itemsInTime}
-                        </TableCell>
-                        <TableCell>
-                          <span className="mr-2 inline-block h-4 w-4 rounded-full bg-yellow-500"></span>
-                          {company.itemsNearExpiration}
-                        </TableCell>
-                        <TableCell>
-                          <span className="mr-2 inline-block h-4 w-4 rounded-full bg-red-500"></span>
-                          {company.itemsExpired}
-                        </TableCell>
-                        <TableCell>
-                          <div className="flex gap-2">
-                            <Button variant="outline">Abrir</Button>
-                            <form action="/api/generate-company-report">
-                              <input
-                                type="hidden"
-                                name="companyName"
-                                value={company.name}
-                              />
-                              <Button type="submit">Gerar Relatório</Button>
-                            </form>
-                          </div>
-                        </TableCell>
-                      </TableRow>
-                    ))}
-                  </TableBody>
-                </Table>
-              </CardContent>
+                  ))}
+                </TableBody>
+              </Table>
             </TabsContent>
 
             <TabsContent value="employees">
-              <CardHeader>
-                <CardTitle>Relatório de Empregados</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <Table>
-                  <TableHeader>
-                    <TableRow>
-                      <TableHead>Nome</TableHead>
-                      <TableHead>CPF</TableHead>
-                      <TableHead>Função</TableHead>
-                      <TableHead>Situação</TableHead>
-                      <TableHead>Itens</TableHead>
-                      <TableHead>Ações</TableHead>
+              <CardTitle className="py-6">Relatório de Empregados</CardTitle>
+              <Table>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead>Nome</TableHead>
+                    <TableHead>CPF</TableHead>
+                    <TableHead>Função</TableHead>
+                    <TableHead>Situação</TableHead>
+                    <TableHead>Itens</TableHead>
+                    <TableHead className="w-1">Ações</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  {employees.map((employee, index) => (
+                    <TableRow key={index}>
+                      <TableCell>{employee.name}</TableCell>
+                      <TableCell>{employee.cpf}</TableCell>
+                      <TableCell>{employee.role}</TableCell>
+                      <TableCell>{employee.status}</TableCell>
+                      <TableCell>
+                        <Button variant="outline">Ver Itens</Button>
+                      </TableCell>
+                      <TableCell>
+                        <div className="flex gap-2">
+                          <Button variant="outline">Abrir</Button>
+                          <form action="/api/generate-employee-report">
+                            <input
+                              type="hidden"
+                              name="employeeName"
+                              value={employee.name}
+                            />
+                            <Button type="submit">Gerar Relatório</Button>
+                          </form>
+                        </div>
+                      </TableCell>
                     </TableRow>
-                  </TableHeader>
-                  <TableBody>
-                    {employees.map((employee, index) => (
-                      <TableRow key={index}>
-                        <TableCell>{employee.name}</TableCell>
-                        <TableCell>{employee.cpf}</TableCell>
-                        <TableCell>{employee.role}</TableCell>
-                        <TableCell>{employee.status}</TableCell>
-                        <TableCell>
-                          <Button variant="outline">Ver Itens</Button>
-                        </TableCell>
-                        <TableCell>
-                          <div className="flex gap-2">
-                            <Button variant="outline">Abrir</Button>
-                            <form action="/api/generate-employee-report">
-                              <input
-                                type="hidden"
-                                name="employeeName"
-                                value={employee.name}
-                              />
-                              <Button type="submit">Gerar Relatório</Button>
-                            </form>
-                          </div>
-                        </TableCell>
-                      </TableRow>
-                    ))}
-                  </TableBody>
-                </Table>
-              </CardContent>
+                  ))}
+                </TableBody>
+              </Table>
             </TabsContent>
           </Tabs>
         </Card>

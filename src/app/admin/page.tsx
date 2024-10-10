@@ -240,7 +240,7 @@ export default function AdminPage() {
               <TableHead>Empresa</TableHead>
               <TableHead>Data de Nascimento</TableHead>
               <TableHead>Horas de Exposição Diárias</TableHead>
-              <TableHead>Ações</TableHead>
+              <TableHead className="w-1">Ações</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>

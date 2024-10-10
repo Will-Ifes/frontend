@@ -106,11 +106,11 @@ export default function AdminUsersPage() {
     <ProtectedRoute>
       <div className="container mx-auto min-h-[40rem] p-4">
         <Card className="p-6">
-          <h1 className="mb-4 text-2xl font-bold">User Management</h1>
+          <h1 className="mb-4 text-2xl font-bold">Gerenciamento de Usuários</h1>
 
           <div className="mb-4 flex flex-wrap gap-4">
             <Input
-              placeholder="Filter by name"
+              placeholder="Filtrar por nome"
               value={filters.name}
               onChange={(e) =>
                 setFilters((prev) => ({ ...prev, name: e.target.value }))
@@ -118,7 +118,7 @@ export default function AdminUsersPage() {
               className="max-w-xs"
             />
             <Input
-              placeholder="Filter by CPF"
+              placeholder="Filtrar por CPF"
               value={filters.cpf}
               onChange={(e) =>
                 setFilters((prev) => ({ ...prev, cpf: e.target.value }))
@@ -126,7 +126,7 @@ export default function AdminUsersPage() {
               className="max-w-xs"
             />
             <Input
-              placeholder="Filter by company"
+              placeholder="Filtrar por empresa"
               value={filters.company}
               onChange={(e) =>
                 setFilters((prev) => ({ ...prev, company: e.target.value }))
@@ -134,22 +134,22 @@ export default function AdminUsersPage() {
               className="max-w-xs"
             />
             <Button onClick={() => setIsCreateModalOpen(true)}>
-              <Plus className="mr-2 h-4 w-4" /> Add User
+              <Plus className="mr-2 h-4 w-4" /> Adicionar Usuário
             </Button>
             <Button onClick={handleExport} variant="outline">
-              <FileDown className="mr-2 h-4 w-4" /> Export
+              <FileDown className="mr-2 h-4 w-4" /> Exportar
             </Button>
           </div>
 
           <Table>
             <TableHeader>
               <TableRow>
-                <TableHead>Name</TableHead>
+                <TableHead>Nome</TableHead>
                 <TableHead>CPF</TableHead>
-                <TableHead>Company</TableHead>
-                <TableHead>Birth Date</TableHead>
-                <TableHead>Daily Exposure Hours</TableHead>
-                <TableHead>Actions</TableHead>
+                <TableHead>Empresa</TableHead>
+                <TableHead>Data de Nascimento</TableHead>
+                <TableHead>Horas de Exposição Diária</TableHead>
+                <TableHead className="w-1">Ações</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
@@ -161,27 +161,29 @@ export default function AdminUsersPage() {
                   <TableCell>{user.birthDate}</TableCell>
                   <TableCell>{user.dailyExposureHours}</TableCell>
                   <TableCell>
-                    <Button
-                      variant="ghost"
-                      size="sm"
-                      onClick={() => setViewingUser(user)}
-                    >
-                      <Eye className="h-4 w-4" />
-                    </Button>
-                    <Button
-                      variant="ghost"
-                      size="sm"
-                      onClick={() => setEditingUser(user)}
-                    >
-                      <Pencil className="h-4 w-4" />
-                    </Button>
-                    <Button
-                      variant="ghost"
-                      size="sm"
-                      onClick={() => setDeletingUser(user)}
-                    >
-                      <Trash2 className="h-4 w-4" />
-                    </Button>
+                    <div className="flex">
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        onClick={() => setViewingUser(user)}
+                      >
+                        <Eye className="h-4 w-4" />
+                      </Button>
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        onClick={() => setEditingUser(user)}
+                      >
+                        <Pencil className="h-4 w-4" />
+                      </Button>
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        onClick={() => setDeletingUser(user)}
+                      >
+                        <Trash2 className="h-4 w-4" />
+                      </Button>
+                    </div>
                   </TableCell>
                 </TableRow>
               ))}

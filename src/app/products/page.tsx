@@ -147,27 +147,27 @@ export default function ProductsPage() {
     <ProtectedRoute>
       <div className="container mx-auto min-h-[40rem] p-4">
         <Card className="p-6">
-          <h1 className="mb-4 text-2xl font-bold">Product Management</h1>
+          <h1 className="mb-4 text-2xl font-bold">Gestão de Produtos</h1>
 
           {/* Filters */}
           <div className="mb-4 grid grid-cols-1 gap-4 md:grid-cols-4">
             <Input
-              placeholder="Name"
+              placeholder="Nome"
               value={filters.name}
               onChange={(e) => handleFilterChange('name', e.target.value)}
             />
             <Input
-              placeholder="Brand"
+              placeholder="Marca"
               value={filters.brand}
               onChange={(e) => handleFilterChange('brand', e.target.value)}
             />
             <Input
-              placeholder="Code"
+              placeholder="Código"
               value={filters.code}
               onChange={(e) => handleFilterChange('code', e.target.value)}
             />
             <Input
-              placeholder="Supplier"
+              placeholder="Fornecedor"
               value={filters.supplier}
               onChange={(e) => handleFilterChange('supplier', e.target.value)}
             />
@@ -176,10 +176,10 @@ export default function ProductsPage() {
           {/* Actions */}
           <div className="mb-4 flex justify-between">
             <Button onClick={() => setIsCreateModalOpen(true)}>
-              <PlusIcon className="mr-2 h-4 w-4" /> Add Product
+              <PlusIcon className="mr-2 h-4 w-4" /> Adicionar Produto
             </Button>
             <Button onClick={exportToCSV}>
-              <FileDownIcon className="mr-2 h-4 w-4" /> Export to CSV
+              <FileDownIcon className="mr-2 h-4 w-4" /> Exportar para CSV
             </Button>
           </div>
 
@@ -187,13 +187,13 @@ export default function ProductsPage() {
           <Table>
             <TableHeader>
               <TableRow>
-                <TableHead>Description</TableHead>
-                <TableHead>Complement</TableHead>
-                <TableHead>Brand</TableHead>
-                <TableHead>Unit</TableHead>
-                <TableHead>Quantity</TableHead>
-                <TableHead>Suppliers</TableHead>
-                <TableHead>Actions</TableHead>
+                <TableHead>Descrição</TableHead>
+                <TableHead>Complemento</TableHead>
+                <TableHead>Marca</TableHead>
+                <TableHead>Unidade</TableHead>
+                <TableHead>Quantidade</TableHead>
+                <TableHead>Fornecedores</TableHead>
+                <TableHead className="w-1">Ações</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
@@ -206,20 +206,22 @@ export default function ProductsPage() {
                   <TableCell>{product.quantity}</TableCell>
                   <TableCell>{product.suppliers.join(', ')}</TableCell>
                   <TableCell>
-                    <Button
-                      variant="ghost"
-                      size="sm"
-                      onClick={() => setEditingProduct(product)}
-                    >
-                      <Pencil className="h-4 w-4" />
-                    </Button>
-                    <Button
-                      variant="ghost"
-                      size="sm"
-                      onClick={() => setDeletingProduct(product)}
-                    >
-                      <Trash2 className="h-4 w-4" />
-                    </Button>
+                    <div className="flex">
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        onClick={() => setEditingProduct(product)}
+                      >
+                        <Pencil className="h-4 w-4" />
+                      </Button>
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        onClick={() => setDeletingProduct(product)}
+                      >
+                        <Trash2 className="h-4 w-4" />
+                      </Button>
+                    </div>
                   </TableCell>
                 </TableRow>
               ))}
