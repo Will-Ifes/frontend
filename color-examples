@@ -1,0 +1,4 @@
+background azul cinza claro: linear-gradient(to bottom right, #DBEAFC, #c7d2fe);
+
+
+background para primary button: linear-gradient(to right, #3b82f6, #4f46e5);
