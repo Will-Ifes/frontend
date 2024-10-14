@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { SetStateAction, useState } from 'react';
 import {
   Pencil,
   Trash2,
@@ -63,7 +63,7 @@ const initialUsers = Array(50)
     id: i + 1,
     name: `User ${i + 1}`,
     email: `user${i + 1}@example.com`,
-    role: ['Admin', 'User', 'Editor'][Math.floor(Math.random() * 3)],
+    role: ['Admin', 'User', 'Editor'][Math.floor(Math.random() * 3)] as 'Admin' | 'User' | 'Editor',
   }));
 
 const formSchema = z.object({
@@ -76,10 +76,10 @@ export default function UserDashboard() {
   const [users, setUsers] = useState(initialUsers);
   const [filteredUsers, setFilteredUsers] = useState(users);
   const [searchTerm, setSearchTerm] = useState('');
-  const [editingUser, setEditingUser] = useState(null);
+  const [editingUser, setEditingUser] = useState<{ id: number; name: string; email: string; role: 'Admin' | 'User' | 'Editor' } | null>();
   const [isEditDialogOpen, setIsEditDialogOpen] = useState(false);
   const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
-  const [userToDelete, setUserToDelete] = useState(null);
+  const [userToDelete, setUserToDelete] = useState<{ id: number; name: string; email: string; role: 'Admin' | 'User' | 'Editor' } | null>(null);
   const [currentPage, setCurrentPage] = useState(1);
   const { toast } = useToast();
 
@@ -95,16 +95,16 @@ export default function UserDashboard() {
   const itemsPerPage = 10;
   const totalPages = Math.ceil(filteredUsers.length / itemsPerPage);
 
-  const filterUsers = (term) => {
-    const filtered = users.filter(
-      (user) =>
-        user.name.toLowerCase().includes(term.toLowerCase()) ||
-        user.email.toLowerCase().includes(term.toLowerCase()) ||
-        user.role.toLowerCase().includes(term.toLowerCase()),
-    );
-    setFilteredUsers(filtered);
-    setSearchTerm(term);
-    setCurrentPage(1);
+  const filterUsers = (term: string) => {
+      const filtered = users.filter(
+          (user) =>
+              user.name.toLowerCase().includes(term.toLowerCase()) ||
+              user.email.toLowerCase().includes(term.toLowerCase()) ||
+              user.role.toLowerCase().includes(term.toLowerCase()),
+      );
+      setFilteredUsers(filtered);
+      setSearchTerm(term);
+      setCurrentPage(1);
   };
 
   const paginatedUsers = filteredUsers.slice(
@@ -112,7 +112,7 @@ export default function UserDashboard() {
     currentPage * itemsPerPage,
   );
 
-  const openEditDialog = (user) => {
+  const openEditDialog = (user: { id: number; name: string; email: string; role: 'Admin' | 'User' | 'Editor' }) => {
     setEditingUser(user);
     form.reset(user);
     setIsEditDialogOpen(true);
@@ -123,7 +123,7 @@ export default function UserDashboard() {
     setIsEditDialogOpen(false);
   };
 
-  const openDeleteDialog = (user) => {
+  const openDeleteDialog = (user: { id: number; name: string; email: string; role: 'Admin' | 'User' | 'Editor' }) => {
     setUserToDelete(user);
     setIsDeleteDialogOpen(true);
   };
@@ -133,9 +133,9 @@ export default function UserDashboard() {
     setIsDeleteDialogOpen(false);
   };
 
-  const onSubmit = (data) => {
+  const onSubmit = (data: any) => {
     const updatedUsers = users.map((user) =>
-      user.id === editingUser.id ? { ...user, ...data } : user,
+      user.id === editingUser?.id ? { ...user, ...data } : user,
     );
     setUsers(updatedUsers);
     filterUsers(searchTerm);
@@ -147,7 +147,7 @@ export default function UserDashboard() {
   };
 
   const deleteUser = () => {
-    const updatedUsers = users.filter((user) => user.id !== userToDelete.id);
+    const updatedUsers = users.filter((user) => user.id !== userToDelete?.id);
     setUsers(updatedUsers);
     filterUsers(searchTerm);
     closeDeleteDialog();
