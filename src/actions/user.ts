@@ -12,7 +12,7 @@ const UseSchema = z.object({
     .min(3, { message: 'Nome deve ter no mínimo 3 caracteres' }),
   image: z.string(),
   role: z.string(),
-  tenantId: z.number().nonnegative('Tenant ID deve ser um número não negativo'),
+  tenantId: z.number().nonnegative('O ID da empresa deve ser um número não negativo'),
 });
 
 export const CreateUser = UseSchema.omit({ id: true, image: true, role: true });
