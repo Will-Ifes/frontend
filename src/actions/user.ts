@@ -66,7 +66,7 @@ export async function createUser(state: CreateUserState, formdata: FormData) {
 
 export async function getUserByEmail(email: string): Promise<User> {
   try {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/auth/user/${email}`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/users/${email}`, {
       method: 'GET',
       headers: { 'Content-Type': 'application/json' },
     });
