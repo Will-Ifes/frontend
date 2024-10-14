@@ -9,7 +9,7 @@ export default function NotFound() {
       <p className="mb-8">
         Desculpe, a página que você está procurando não existe.
       </p>
-      <Link className="text-blue-500 hover:underline" href="/">
+      <Link className="text-white bg-gray-900 hover:underline" href="/">
         Voltar para a página inicial
       </Link>
     </div>
