@@ -12,7 +12,7 @@ const UseSchema = z.object({
     .min(3, { message: 'Nome deve ter no mínimo 3 caracteres' }),
   image: z.string(),
   role: z.string(),
-  tenantId: z.number().nonnegative('Tenant ID deve ser um número não negativo'),
+  tenantId: z.number().nonnegative('O ID da empresa deve ser um número não negativo'),
 });
 
 export const CreateUser = UseSchema.omit({ id: true, image: true, role: true });
@@ -41,7 +41,7 @@ export async function createUser(state: CreateUserState, formdata: FormData) {
 
   if (validateFields.success) {
     try {
-      const res = await fetch(`${process.env.BACKEND_URL}/auth/register`, {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/auth/register`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(Object.fromEntries(formdata)),
@@ -66,7 +66,7 @@ export async function createUser(state: CreateUserState, formdata: FormData) {
 
 export async function getUserByEmail(email: string): Promise<User> {
   try {
-    const res = await fetch(`${process.env.BACKEND_URL}/auth/user/${email}`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/users/${email}`, {
       method: 'GET',
       headers: { 'Content-Type': 'application/json' },
     });

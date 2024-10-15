@@ -113,7 +113,8 @@ export default function InventoryList() {
             <TableHead>Quantidade</TableHead>
             <TableHead>Valor Médio de Compra</TableHead>
             <TableHead>Média de Consumo Mensal</TableHead>
-            <TableHead>Ações</TableHead>
+            <TableHead className="w-1">Ações</TableHead>{' '}
+            {/* Add a class to set the width */}
           </TableRow>
         </TableHeader>
         <TableBody>

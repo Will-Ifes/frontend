@@ -15,7 +15,8 @@ import {
 import { PlusIcon, FileDownIcon, Pencil, Trash2 } from 'lucide-react';
 import ProductModal from './components/product-modal';
 import DeleteConfirmationModal from './components/delete-confirmation-modal';
-import ProtectedRoute from '@/components/common/protected-route-client';
+import ProtectedRoute from '@/components/application-bases/protected-route-client';
+import { Card } from '@/components/ui/card';
 
 // Mock data - replace with actual API calls in a real application
 const mockProducts = [
@@ -145,84 +146,88 @@ export default function ProductsPage() {
   return (
     <ProtectedRoute>
       <div className="container mx-auto min-h-[40rem] p-4">
-        <h1 className="mb-4 text-2xl font-bold">Product Management</h1>
+        <Card className="p-6">
+          <h1 className="mb-4 text-2xl font-bold">Gestão de Produtos</h1>
 
-        {/* Filters */}
-        <div className="mb-4 grid grid-cols-1 gap-4 md:grid-cols-4">
-          <Input
-            placeholder="Name"
-            value={filters.name}
-            onChange={(e) => handleFilterChange('name', e.target.value)}
-          />
-          <Input
-            placeholder="Brand"
-            value={filters.brand}
-            onChange={(e) => handleFilterChange('brand', e.target.value)}
-          />
-          <Input
-            placeholder="Code"
-            value={filters.code}
-            onChange={(e) => handleFilterChange('code', e.target.value)}
-          />
-          <Input
-            placeholder="Supplier"
-            value={filters.supplier}
-            onChange={(e) => handleFilterChange('supplier', e.target.value)}
-          />
-        </div>
+          {/* Filters */}
+          <div className="mb-4 grid grid-cols-1 gap-4 md:grid-cols-4">
+            <Input
+              placeholder="Nome"
+              value={filters.name}
+              onChange={(e) => handleFilterChange('name', e.target.value)}
+            />
+            <Input
+              placeholder="Marca"
+              value={filters.brand}
+              onChange={(e) => handleFilterChange('brand', e.target.value)}
+            />
+            <Input
+              placeholder="Código"
+              value={filters.code}
+              onChange={(e) => handleFilterChange('code', e.target.value)}
+            />
+            <Input
+              placeholder="Fornecedor"
+              value={filters.supplier}
+              onChange={(e) => handleFilterChange('supplier', e.target.value)}
+            />
+          </div>
 
-        {/* Actions */}
-        <div className="mb-4 flex justify-between">
-          <Button onClick={() => setIsCreateModalOpen(true)}>
-            <PlusIcon className="mr-2 h-4 w-4" /> Add Product
-          </Button>
-          <Button onClick={exportToCSV}>
-            <FileDownIcon className="mr-2 h-4 w-4" /> Export to CSV
-          </Button>
-        </div>
+          {/* Actions */}
+          <div className="mb-4 flex justify-between">
+            <Button onClick={() => setIsCreateModalOpen(true)}>
+              <PlusIcon className="mr-2 h-4 w-4" /> Adicionar Produto
+            </Button>
+            <Button onClick={exportToCSV}>
+              <FileDownIcon className="mr-2 h-4 w-4" /> Exportar para CSV
+            </Button>
+          </div>
 
-        {/* Products Table */}
-        <Table>
-          <TableHeader>
-            <TableRow>
-              <TableHead>Description</TableHead>
-              <TableHead>Complement</TableHead>
-              <TableHead>Brand</TableHead>
-              <TableHead>Unit</TableHead>
-              <TableHead>Quantity</TableHead>
-              <TableHead>Suppliers</TableHead>
-              <TableHead>Actions</TableHead>
-            </TableRow>
-          </TableHeader>
-          <TableBody>
-            {filteredProducts.map((product) => (
-              <TableRow key={product.id}>
-                <TableCell>{product.description}</TableCell>
-                <TableCell>{product.complement}</TableCell>
-                <TableCell>{product.brand}</TableCell>
-                <TableCell>{product.unit}</TableCell>
-                <TableCell>{product.quantity}</TableCell>
-                <TableCell>{product.suppliers.join(', ')}</TableCell>
-                <TableCell>
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    onClick={() => setEditingProduct(product)}
-                  >
-                    <Pencil className="h-4 w-4" />
-                  </Button>
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    onClick={() => setDeletingProduct(product)}
-                  >
-                    <Trash2 className="h-4 w-4" />
-                  </Button>
-                </TableCell>
+          {/* Products Table */}
+          <Table>
+            <TableHeader>
+              <TableRow>
+                <TableHead>Descrição</TableHead>
+                <TableHead>Complemento</TableHead>
+                <TableHead>Marca</TableHead>
+                <TableHead>Unidade</TableHead>
+                <TableHead>Quantidade</TableHead>
+                <TableHead>Fornecedores</TableHead>
+                <TableHead className="w-1">Ações</TableHead>
               </TableRow>
-            ))}
-          </TableBody>
-        </Table>
+            </TableHeader>
+            <TableBody>
+              {filteredProducts.map((product) => (
+                <TableRow key={product.id}>
+                  <TableCell>{product.description}</TableCell>
+                  <TableCell>{product.complement}</TableCell>
+                  <TableCell>{product.brand}</TableCell>
+                  <TableCell>{product.unit}</TableCell>
+                  <TableCell>{product.quantity}</TableCell>
+                  <TableCell>{product.suppliers.join(', ')}</TableCell>
+                  <TableCell>
+                    <div className="flex">
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        onClick={() => setEditingProduct(product)}
+                      >
+                        <Pencil className="h-4 w-4" />
+                      </Button>
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        onClick={() => setDeletingProduct(product)}
+                      >
+                        <Trash2 className="h-4 w-4" />
+                      </Button>
+                    </div>
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </Card>
 
         {/* Modals */}
         <ProductModal

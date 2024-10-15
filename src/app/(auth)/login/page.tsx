@@ -57,7 +57,6 @@ const LoginUserPage: React.FC = () => {
   return (
     <div className="flex h-screen items-center justify-center bg-gray-100">
       <div className="w-full max-w-md">
-        <h1 className="mb-6 text-center text-2xl font-bold">Login</h1>
         <FormLogin onSubmit={handleLogin} error={error} />
       </div>
     </div>

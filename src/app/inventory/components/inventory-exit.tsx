@@ -1,9 +1,9 @@
-import { useState } from "react";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import * as z from "zod";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
+import { useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import * as z from 'zod';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
 import {
   Form,
   FormControl,
@@ -11,7 +11,7 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/form";
+} from '@/components/ui/form';
 import {
   Table,
   TableBody,
@@ -19,20 +19,20 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@/components/ui/table";
+} from '@/components/ui/table';
 
 const exitSchema = z.object({
-  client: z.string().min(1, "Cliente é obrigatório"),
-  deliveryDate: z.string().min(1, "Data de entrega é obrigatória"),
+  client: z.string().min(1, 'Cliente é obrigatório'),
+  deliveryDate: z.string().min(1, 'Data de entrega é obrigatória'),
   items: z
     .array(
       z.object({
-        code: z.string().min(1, "Código é obrigatório"),
-        quantity: z.number().min(1, "Quantidade deve ser maior que zero"),
-      })
+        code: z.string().min(1, 'Código é obrigatório'),
+        quantity: z.number().min(1, 'Quantidade deve ser maior que zero'),
+      }),
     )
-    .min(1, "Adicione pelo menos um item"),
-  employees: z.string().min(1, "Adicione pelo menos um colaborador"),
+    .min(1, 'Adicione pelo menos um item'),
+  employees: z.string().min(1, 'Adicione pelo menos um colaborador'),
 });
 
 export default function InventoryExit() {
@@ -44,14 +44,14 @@ export default function InventoryExit() {
     items: { code: string; quantity: number }[];
     employees: string;
   };
-  
+
   const form = useForm<FormValues>({
     resolver: zodResolver(exitSchema),
     defaultValues: {
-      client: "",
-      deliveryDate: "",
+      client: '',
+      deliveryDate: '',
       items: [],
-      employees: "",
+      employees: '',
     },
   });
 
@@ -61,13 +61,13 @@ export default function InventoryExit() {
   };
 
   const addItem = () => {
-    setItems([...items, { code: "", quantity: 0 }]);
+    setItems([...items, { code: '', quantity: 0 }]);
   };
 
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
           <FormField
             control={form.control}
             name="client"

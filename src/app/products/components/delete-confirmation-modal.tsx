@@ -24,15 +24,15 @@ export default function DeleteConfirmationModal({
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Confirm Deletion</DialogTitle>
+          <DialogTitle>Confirmar Exclusão</DialogTitle>
         </DialogHeader>
-        <p>Are you sure you want to delete the instance {instanceName}?</p>
+        <p>Tem certeza de que deseja excluir a instância {instanceName}?</p>
         <DialogFooter>
           <Button variant="outline" onClick={onClose}>
-            Cancel
+            Cancelar
           </Button>
           <Button variant="destructive" onClick={onConfirm}>
-            Delete
+            Excluir
           </Button>
         </DialogFooter>
       </DialogContent>

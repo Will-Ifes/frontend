@@ -36,7 +36,8 @@ const CreateUserPage: React.FC = () => {
 
     if (result?.error) {
       setError(result.error);
-    } else {handleCreateUser
+    } else {
+      handleCreateUser;
       router.push('/success'); // Redirecionar para uma página de sucesso ou outra página
     }
   };
@@ -88,7 +89,6 @@ const CreateUserPage: React.FC = () => {
   return (
     <div className="flex h-screen items-center justify-center bg-gray-100">
       <div className="flex w-fit flex-col justify-center">
-        <h1 className="mb-6 text-center text-2xl font-bold">Criar Usuário</h1>
         <FormCreate onSubmit={handleCreateUser} error={error} />
       </div>
     </div>

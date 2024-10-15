@@ -157,7 +157,7 @@ export default function InventoryEntry() {
           </TableBody>
         </Table>
 
-        <Button type="button" onClick={addItem}>
+        <Button type="button" onClick={addItem} className="mr-3">
           Adicionar Item
         </Button>
         <Button type="submit">Salvar Entrada</Button>

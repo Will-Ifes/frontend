@@ -4,6 +4,7 @@ import React, { ReactNode, useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Cookies from 'js-cookie';
 import jwt from 'jsonwebtoken';
+import Header from './header';
 
 interface ProtectedRouteProps {
   children: ReactNode;
@@ -40,9 +41,14 @@ const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children }) => {
   }
 
   return (
-    <div className="flex h-full w-full justify-center bg-gray-100 min-h-[40rem]">
-      {children}
-    </div>
+    <>
+      <Header />
+      <main className="h-full w-full bg-gray-50">
+        <div className="flex h-full min-h-screen w-full justify-center bg-gray-100 px-8 py-12">
+          {children}
+        </div>
+      </main>
+    </>
   );
 };
 

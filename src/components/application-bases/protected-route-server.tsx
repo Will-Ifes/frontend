@@ -2,6 +2,7 @@ import { ReactNode } from 'react';
 import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
 import jwt from 'jsonwebtoken';
+import Header from './header';
 
 interface ProtectedRouteProps {
   children: ReactNode;
@@ -33,8 +34,14 @@ export default function ProtectedRoute({ children }: ProtectedRouteProps) {
   }
 
   return (
-    <div className="flex w-full justify-center bg-gray-100 min-h-[40rem]">
-      {children}
-    </div>
+    <>
+      <Header />
+
+      <main className="h-full w-full bg-gray-50">
+        <div className="flex min-h-screen w-full justify-center bg-gray-100 px-8 py-12">
+          {children}
+        </div>
+      </main>
+    </>
   );
 }
