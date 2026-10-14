@@ -1,6 +1,17 @@
+<p align="center">
+  <img src="./.github/readme-cover.svg" alt="WERT | arquivo frontend: Referência histórica da interface de gestão." width="100%" />
+</p>
+
 # WERT · frontend histórico
 
 Repositório histórico do projeto WERT, preservado como referência da implementação e dos estudos de integração e publicação.
+
+## Explore o diferencial
+
+| Ponto de entrada | O que observar |
+| --- | --- |
+| [Navegação operacional](src/app/inventory/page.tsx) | As abas de inventário organizam diferentes operações na mesma área. |
+| [Integração de usuários](src/actions/user.ts) | As ações mostram a ligação entre os formulários e a API. |
 
 ## Versão de portfólio recomendada
 
@@ -26,7 +37,7 @@ Frontend em Next.js, React, TypeScript e Tailwind, com páginas de autenticaçã
 
 ### Executar e consultar
 
-Use as instruções da [edição revisada](https://github.com/Will-Ifes/wert-frontend#executar-localmente), observando que código e configuração podem divergir entre as bases. Os comandos efetivos deste repositório estão em [package.json](package.json).
+Use as instruções da [edição revisada](https://github.com/Will-Ifes/wert-frontend#executar), observando que código e configuração podem divergir entre as bases. Os comandos efetivos deste repositório estão em [package.json](package.json).
 
 </details>
 
